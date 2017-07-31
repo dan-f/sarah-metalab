@@ -1869,48 +1869,48 @@ const images = [
   '95885_0_0_1.jpg',
   '99024_0_0_0.jpg',
   '99982_0_0_0.jpg'
-]
+];
 
-const container = document.getElementById('app-container')
-const containerMargin = 20
-const newImgFreq = [500, 1500]
-const removeImgFreq = [200, 8000]
+const container = document.getElementById('app-container');
+const containerMargin = 20;
+const newImgFreq = [500, 1500];
+const removeImgFreq = [200, 8000];
 
 function range (limits) {
-  return limits[0] + Math.floor(Math.random() * (limits[1] - limits[0]))
+  return limits[0] + Math.floor(Math.random() * (limits[1] - limits[0]));
 }
 
 function randomImageUrl () {
-  return 'faces/' + images[range([0, images.length])]
+  return 'faces/' + images[range([0, images.length])];
 }
 
 function randomImg () {
-  const url = randomImageUrl()
-  const img = document.createElement('img')
-  img.className = 'face'
-  img.src = url
-  img.alt = ''
-  const x_max = container.clientWidth - img.width - (2 * containerMargin)
-  const x = range([containerMargin, x_max])
-  const y_max = container.clientHeight - img.height - (2 * containerMargin)
-  const y = range([containerMargin, y_max])
-  img.style.left = `${x}px`
-  img.style.top = `${y}px`
-  return img
+  const url = randomImageUrl();
+  const img = document.createElement('img');
+  img.className = 'face';
+  img.src = url;
+  img.alt = '';
+  const x_max = container.clientWidth - img.width - (2 * containerMargin);
+  const x = range([containerMargin, x_max]);
+  const y_max = container.clientHeight - img.height - (2 * containerMargin);
+  const y = range([containerMargin, y_max]);
+  img.style.left = '' + x + 'px';
+  img.style.top = '' + y + 'px';
+  return img;
 }
 
 function showImg (img) {
-  setTimeout(() => {
-    img.style.opacity = 0
-    setTimeout(() => container.removeChild(img), 1000)
-  }, range(removeImgFreq))
-  container.appendChild(img)
-  img.style.opacity = 0.5 + (Math.random() * 0.5)
+  setTimeout(function () {
+    img.style.opacity = 0;
+    setTimeout(function () { container.removeChild(img); }, 1000);
+  }, range(removeImgFreq));
+  container.appendChild(img);
+  img.style.opacity = 0.5 + (Math.random() * 0.5);
 }
 
 function play () {
-  showImg(randomImg())
-  setTimeout(play, range(newImgFreq))
+  showImg(randomImg());
+  setTimeout(play, range(newImgFreq));
 }
 
-play()
+play();
